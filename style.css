@@ -11,6 +11,11 @@ img {
     filter: blur(var(--blur));
 }
 
+h3.hl {
+    margin: 0;
+    font-size: 50px;
+}
+
 .hl {
     color: var(--base);
 }
