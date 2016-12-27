@@ -9,7 +9,7 @@
     <h2 class="title">Update CSS Variables with <span class="hl">Js</span> </h2>
     <div class="controls">
         <label for="spacing">Spacing:</label>
-        <input type="range" name="spacing" min="10" max="200" value="10" data-sizing="px">
+        <input type="range" name="spacing" min="10" max="200" value="10" data-sizing="px"> <!-- Data-sizing used as a suffix for a end of value  -->
 
         <label for="blur">Blur:</label>
         <input type="range" name="blur" min="0" max="25" value="10" data-sizing="px">
@@ -23,6 +23,21 @@
 
 <script>
     const inputs = document.querySelectorAll('.controls input');
+
+    function update() {
+        //Dataset is Object that will contain all the data attributes for element
+        const suffix = this.dataset.sizing || '';
+
+        //This.name will refer to the name I provided as a var: spacing, blur, base
+        //Then set to the this.value and the suffix appended
+        document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+
+    }
+
+    inputs.forEach(input => input.addEventListener('change', update));
+    //Moving will trigger change as well
+    inputs.forEach(input => input.addEventListener('mousemove', update));
+
 </script>
 </body>
 </html>
